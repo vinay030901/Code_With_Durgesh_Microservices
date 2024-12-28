@@ -1,0 +1,49 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "ConfigServerApplication",
+      "request": "launch",
+      "mainClass": "com.lcw.config.server.ConfigServerApplication",
+      "projectName": "ConfigServer"
+    },
+    {
+      "type": "java",
+      "name": "ApiGatewayApplication",
+      "request": "launch",
+      "mainClass": "com.lcw.gateway.ApiGatewayApplication",
+      "projectName": "ApiGateway"
+    },
+    {
+      "type": "java",
+      "name": "RatingServiceApplication",
+      "request": "launch",
+      "mainClass": "com.lcwd.ratings.RatingServiceApplication",
+      "projectName": "RatingService"
+    },
+    {
+      "type": "java",
+      "name": "ServiceRegistryApplication",
+      "request": "launch",
+      "mainClass": "com.lcwd.serviceregistry.ServiceRegistryApplication",
+      "projectName": "ServiceRegistry"
+    },
+    {
+      "type": "java",
+      "name": "UserServiceApplication",
+      "request": "launch",
+      "mainClass": "com.lcwd.user.UserServiceApplication",
+      "projectName": "UserService"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-HotelServiceApplication<HotelService>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.lcwd.hotel.HotelServiceApplication",
+      "projectName": "HotelService",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}
