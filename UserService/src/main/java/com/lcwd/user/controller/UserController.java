@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 @RestController
 @RequestMapping("/users")
@@ -24,6 +25,7 @@ public class UserController {
         this.userService = userService;
     }
 
+    @PreAuthorize("hasAuthority('Admin')")
     @PostMapping
     public ResponseEntity<User> createUser(@RequestBody User user) {
         return ResponseEntity.status(HttpStatus.CREATED).body(userService.saveUser(user));
@@ -52,7 +54,7 @@ public class UserController {
     public ResponseEntity<User> ratingHotelFallback(String userId, Exception ex) {
         // logger.info("Fallback method called because service is down for userId: " +
         // userId);
-
+        ex.printStackTrace();
         User user = User.builder().email("dummy@gmail.com").name("dummy").userId("dummy")
                 .about("this user is returned because service is down").build();
         return new ResponseEntity<>(user, HttpStatus.SERVICE_UNAVAILABLE);

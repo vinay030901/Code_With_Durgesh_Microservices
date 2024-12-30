@@ -2,6 +2,8 @@ package com.lcwd.user.config.interceptor;
 
 import java.io.IOException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.client.ClientHttpRequestExecution;
@@ -15,6 +17,7 @@ import org.springframework.stereotype.Component;
 public class RestTemplateInterceptor implements ClientHttpRequestInterceptor {
 
     private OAuth2AuthorizedClientManager manager;
+    private Logger logger = LoggerFactory.getLogger(RestTemplateInterceptor.class);
 
     public RestTemplateInterceptor(OAuth2AuthorizedClientManager manager) {
         this.manager = manager;
@@ -26,6 +29,7 @@ public class RestTemplateInterceptor implements ClientHttpRequestInterceptor {
         String token = manager
                 .authorize(OAuth2AuthorizeRequest.withClientRegistrationId("my-client").principal("internal").build())
                 .getAccessToken().getTokenValue();
+        logger.info("Rest template interceptor Token: {}", token);
         request.getHeaders().add("Authorization", "Bearer " + token);
         return execution.execute(request, body);
     }
